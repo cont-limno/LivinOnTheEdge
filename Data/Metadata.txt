@@ -1,0 +1,124 @@
+CostDist_Mich_4ha_lakes_2020mBuff.csv
+Description: Cost surface Zonal Statistics (as a table) output (ArcGIS v. 10.3.1) for dispersal buffers (2020 m) around Michigan lakes (? 4 ha). 
+Location: LivinOnTheEdge/Data
+
+Columns
+OBJECTID: auto-generated ArcGIS unique row identifier
+lagoslakei: lagoslakeid; unique lake identifier in LAGOSNE
+COUNT: number of cost surface cells in zone
+AREA: area (m2) of cost surface cells in zone (COUNT * 900 m2)
+MIN: minimum cost surface value within zone
+MAX: maximum cost surface value within zone
+RANGE: MAX – MIN
+MEAN: mean cost surface value within zone
+STD: standard deviation of cost surface values within zone
+SUM: total cost surface value within zone
+
+LakeWetlandPatchStats_2020mBuff.csv
+Description: Patch statistics for lakes and wetlands within dispersal buffers (2020 m) around Michigan lakes (? 4 ha). Calculated with LivinOnTheEdge/Rcode/LakesWetlands_in_DispersalBuffers.R.
+Location: LivinOnTheEdge/Data
+
+Columns
+lagoslakeid: unique lake identifier in LAGOSNE
+nLakePatches: number of lake patches (? 0.1 ha) intersecting with buffer
+LakeEdge_km: length of lake patches (km) within buffer (only lake parts in buffer; analogous to entry points to other waterbodies from focal lake)
+LakeEdgeArea_ha: amount of lake edge habitat, function of LakeEdge_km and assumption that 30m of perimeter=1 30x30m cell area (900m2)
+LakeEdgeArea_pct: proportion of buffer covered by lake edge habitat (focal lake removed)
+nWetlandPatches: number of wetland patches within buffer
+WetlandEdge_km: length of wetland patches (km) within buffer (only wetland parts in buffer; analogous to entry points to other waterbodies from focal lake)
+WetlandArea_ha: amount of wetland habitat within buffer
+WetlandArea_pct: proportion of buffer covered by wetland habitat (focal lake removed)
+BufferWidth_m: width of buffer around lake used in analysis
+
+Michigan_LAGOS_conn_metrics.csv
+Description: Freshwater connectivity metrics for Michigan lakes (? 4 ha) extracted from LAGOSNE (see LAGOSNE R package help for more details). Calculated with LivinOnTheEdge/Rcode/Michigan_LAGOS_conn_metrics.R.
+Location: LivinOnTheEdge/Data
+
+Columns
+lagoslakeid: unique lake identifier in LAGOSNE
+iws_lakes_overlapping_area_pct: proportion of watershed (iws) (excluding focal lake area) covered by lakes (? 4 ha)
+iws_streamdensity_streams_density_mperha: all streams (NHDFlowline minus artificial lines through lakes) within the lake watershed (iws) expressed as meters per hectare (mperha)
+iws_wl_allwetlandsdissolved_overlapping_area_pct: proportion of watershed (iws) (excluding focal lake area) covered by wetland polygons (all types, dissolved)
+iws_wl_connectedwetlandsundissolved_overlapping_area_pct: proportion of watershed (iws) (excluding focal lake area) covered by connected wetland patches (intersected within a 30 m buffer by a higher order stream or by multiple streams). The patches were left as delineated by the National Wetlands Inventory ("undissolved") for calculating this variable
+buffer500m_streamdensity_streams_density_mperha: all streams (NHDFlowline minus artificial lines through lakes) within 500 m zone from focal lake expressed as meters per hectare (mperha)
+shoreline_wetlands_pct: proportion of lake shoreline adjacent to wetlands (adjacency defined as occurring within 30 m of lake shoreline)
+iws_damdensity_pointsperha: number of dams per hectare within the lake watershed (iws)
+
+MichiganLakePatchStats_wBorderStates.csv
+Description: Patch statistics for Michigan lakes (? 4 ha), including US lakes within 10 km of the Michigan border; output from SDMTools::PatchStat, calculated in LivinOnTheEdge/Rcode/MichiganLakePatchStats.R.
+Location: LivinOnTheEdge/Data
+
+Columns
+patchID: the unique ID for each patch (lagoslakeid in LAGOSNE)
+n.cell: the number of cells for each patch, specified in square meters
+n.core.cell: the number of cells in the core area, without the edge area
+n.edges.perimeter: the number of outer perimeter cell edges of the patch
+n.edges.internal: the number of internal cell edges of the patch
+area: the area of each patch comprising a landscape mosaic (m2)
+core.area: represents the interior area (m2) of the patch, greater than the specified depth-of-edge distance from the perimeter
+perimeter: the perimeter of the patch, including any internal holes in the patch, specified in meters
+perim.area.ratio: the ratio of the patch perimeter (m) to area (m2)
+shape.index: the shape complexity, sum of each patch’s perimeter divided by the square root of patch area
+frac.dim.index: fractal dimension index reflects shape complexity across a range of spatial scales; approaches 2 times the logarithm of patch perimeter (m) divided by the logarithm of patch area (m2)
+core.area.index: quantifies core area as a percentage of patch area
+edge.area: area (m2) of edge habitat within patch, with edge habitat defined as 30 x 30 m cells along patch margins. Not included in SDMTools::PatchStat
+edge.area.index: quantifies edge area as a percentage of patch area. Not included in SDMTools::PatchStat
+
+PADUS_LAGOSNE_IWS.csv
+Description: Tabulate Area output (ArcGIS v. 10.3.1) for protected land within watersheds (iws) for lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Watersheds with no protected land were excluded.
+Location: LivinOnTheEdge/Data
+
+Columns
+OBJECTID: auto-generated ArcGIS unique row identifier
+LAGOSLAKEI: lagoslakeid; unique lake identifier in LAGOSNE
+A_1: area (m2) of land under GAP status 1 (strict protection; managed for biodiversity with disturbances allowed to proceed or mimicked)
+A_2: area (m2) of land under GAP status 2 (strict protection; managed for biodiversity with disturbances suppressed)
+A_3: area (m2) of land under GAP status 3 (multi-use)
+
+PADUS_MI_Buff2020m_pct.csv
+Description: Proportion of dispersal buffers (2020 m) protected based on Tabulate Area output (ArcGIS v. 10.3.1) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded. Calculated in: LivinOnTheEdge/Rcode/PercentProtected_IWS_LakeBuffers.R.
+Location: LivinOnTheEdge/Data
+
+Columns
+LAGOSLAKEI: lagoslakeid; unique lake identifier in LAGOSNE
+OBJECTID: auto-generated ArcGIS unique row identifier
+A_1: area (m2) of land under GAP status 1 (strict protection; managed for biodiversity with disturbances allowed to proceed or mimicked)
+A_2: area (m2) of land under GAP status 2 (strict protection; managed for biodiversity with disturbances suppressed)
+A_3: area (m2) of land under GAP status 3 (multi-use)
+buff_area_ha.x: area of buffer (ha) (same as buff_area_ha; duplicated by table merge)
+GAP12_buff_ha: area of buffer under GAP status 1 or 2
+GAP123_buff_ha: area of buffer under GAP status 1, 2 or 3
+GAP12_buff_pct: proportion of buffer under GAP status 1 or 2
+GAP123_buff_pct: proportion of buffer under GAP status 1, 2 or 3
+buff_area_ha.y: area of buffer (ha) (same as buff_area_ha; duplicated by table merge)
+buff_area_ha: area of buffer (ha)
+
+PADUS_MI_IWS_pct.csv
+Description: Proportion of lake watersheds (iws) protected based on Tabulate Area output (ArcGIS v. 10.3.1) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Watersheds with no protected land were excluded. Calculated in: LivinOnTheEdge/Rcode/PercentProtected_IWS_LakeBuffers.R.
+Location: LivinOnTheEdge/Data
+
+Columns
+LAGOSLAKEI: lagoslakeid; unique lake identifier in LAGOSNE
+OBJECTID: auto-generated ArcGIS unique row identifier
+A_1: area (m2) of land under GAP status 1 (strict protection; managed for biodiversity with disturbances allowed to proceed or mimicked)
+A_2: area (m2) of land under GAP status 2 (strict protection; managed for biodiversity with disturbances suppressed)
+A_3: area (m2) of land under GAP status 3 (multi-use)
+IWS_area_ha.x: area of watershed (ha) (same as buff_area_ha; duplicated by table merge)
+GAP12_IWS_ha: area of watershed under GAP status 1 or 2
+GAP123_IWS_ha: area of watershed under GAP status 1, 2 or 3
+GAP12_IWS_pct: proportion of watershed under GAP status 1 or 2
+GAP123_IWS_pct: proportion of watershed under GAP status 1, 2 or 3
+IWS_area_ha.y: area of watershed (ha) (same as IWS_area_ha; duplicated by table merge)
+IWS_area_ha: area of watershed (ha)
+
+PADUS_Mich_4ha_lakes_2020mBuff.csv
+Description: Tabulate Area output (ArcGIS v. 10.3.1) for protected land within dispersal buffers (2020 m) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded.
+Location: LivinOnTheEdge/Data
+
+Columns
+OBJECTID: auto-generated ArcGIS unique row identifier
+LAGOSLAKEI: lagoslakeid; unique lake identifier in LAGOSNE
+A_1: area (m2) of land under GAP status 1 (strict protection; managed for biodiversity with disturbances allowed to proceed or mimicked)
+A_2: area (m2) of land under GAP status 2 (strict protection; managed for biodiversity with disturbances suppressed)
+A_3: area (m2) of land under GAP status 3 (multi-use)
+
