@@ -190,6 +190,7 @@ hydro_terr_conn_df <- merge(pca_hydro_scores, pca_terr_scores, by='lagoslakeid',
 hydro_terr_conn_df <- hydro_terr_conn_df[,c('lagoslakeid','PChydroall','PCterrall')]
 hydro_terr_conn_df$hydro_terr <- sqrt((hydro_terr_conn_df$PCterrall ^2) + (hydro_terr_conn_df$PChydroall ^2)) 
 hydro_terr_conn_df <- hydro_terr_conn_df[complete.cases(hydro_terr_conn_df), ]
+#write.csv(hydro_terr_conn_df, "Data/Michigan_Lake_Conn_Scores.csv")
 
 #dev.new(width=4, height=4)
 par(mfrow=c(1,1))
