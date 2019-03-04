@@ -43,6 +43,15 @@ iws_wl_connectedwetlandsundissolved_overlapping_area_pct: proportion of watershe
 buffer500m_streamdensity_streams_density_mperha: all streams (NHDFlowline minus artificial lines through lakes) within 500 m zone from focal lake expressed as meters per hectare (mperha)
 shoreline_wetlands_pct: proportion of lake shoreline adjacent to wetlands (adjacency defined as occurring within 30 m of lake shoreline)
 iws_damdensity_pointsperha: number of dams per hectare within the lake watershed (iws)
+Michian_Lake_Conn_Scores.csv
+Description: semi-aquatic and aquatic connectivity scores for Michigan lakes (? 4 ha), calculated in LivinOnTheEdge/Rcode/Hydro_Terrestrial_LakeConn_Indices.R
+Location: LivinOnTheEdge/Data
+
+Columns
+lagoslakeid: unique lake identifier in LAGOSNE
+PChydroall: aquatic connectivity score (based on PCA scores for aquatic variables)
+PCterrall: semi-aquatic connectivity score (based on PCA scores for semi-aquatic variables)
+hydro_terr: combined aquatic/semi-aquatic connectivity score
 
 MichiganLakePatchStats_wBorderStates.csv
 Description: Patch statistics for Michigan lakes (? 4 ha), including US lakes within 10 km of the Michigan border; output from SDMTools::PatchStat, calculated in LivinOnTheEdge/Rcode/MichiganLakePatchStats.R.
