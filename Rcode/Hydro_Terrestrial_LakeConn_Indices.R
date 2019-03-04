@@ -1,6 +1,6 @@
-############### Terrestrial and hydrologic lake connectivity indices ###########################
+################# Aquatic and semi-aquatic lake connectivity indices ###########################
 # Date: 1-3-19
-# updated: 2-25-19
+# updated: 3-4-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -26,7 +26,7 @@ cost_dist <- read.csv("Data/CostDist_Mich_4ha_lakes_2020mBuff.csv")
 mich_shp <- shapefile("Data/GIS/Michigan_NoIsleRoyale.shp")
 
 # LAGOS NE lakes
-lakes_4ha_poly <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_All_Lakes_4ha.shp")
+#lakes_4ha_poly <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_All_Lakes_4ha.shp")
 lakes_4ha_pts <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha_POINTS/LAGOS_NE_All_Lakes_4ha_POINTS.shp")
 
 # load color palette function
@@ -38,7 +38,7 @@ PADUS_buff <- read.csv("Data/PADUS_MI_Buff2020m_pct.csv")
 
 ##################### Main program ######################
 # identify Mich lagoslakeids (focal lakes)
-mich_lakes_4ha <- subset(lakes_4ha_poly, STATE=='MI')
+mich_lakes_4ha <- subset(lakes_4ha_pts, STATE=='MI')
 mich_lagoslakeids <- unique(mich_lakes_4ha@data$lagoslakei)
 
 # drop useless index columns from conn dfs
