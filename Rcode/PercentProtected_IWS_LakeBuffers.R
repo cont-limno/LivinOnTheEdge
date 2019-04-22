@@ -1,6 +1,6 @@
 #### Calculate percent protected for lake watersheds and snapping turtle dispersal buffers #####
 # Date: 1-3-19
-# updated: 2-25-19
+# updated: 4-22-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -20,14 +20,17 @@ PADUS_buff <- read.csv("Data/PADUS_Mich_4ha_lakes_2020mBuff.csv") #2020 m snappi
 
 # shapefile of lake buffers (needed to calculate areas)
 # contains US lakes >= 4 ha within 10km of the Michigan border
+# GIS data downloaded and stored locally from: 
+# Soranno P., K. Cheruvelil. (2017c). LAGOS-NE-GIS v1.0: A module for LAGOS-NE, 
+# a multi-scaled geospatial and temporal database of lake ecological context and water 
+# quality for thousands of U.S. Lakes: 2013-1925. Environmental Data Initiative. 
+# Package ID: edi.98.1
+# http://dx.doi.org/10.6073/pasta/fb4f5687339bec467ce0ed1ea0b5f0ca. Dataset accessed 9/26/2017.
 buff_shp <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_4ha_within10km_mich_2020mBuff.shp")
-
-# LAGOS NE lakes
-lakes_4ha_poly <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_All_Lakes_4ha.shp")
 
 ############## Main program #################
 # identify Mich lagoslakeids (focal lakes)
-mich_lakes_4ha <- subset(lakes_4ha_poly, STATE=='MI')
+mich_lakes_4ha <- subset(buff_shp, STATE=='MI')
 mich_lagoslakeids <- unique(mich_lakes_4ha@data$lagoslakei)
 
 # calculate % of each IWS and lake buffer protected based on tabulate area results above
