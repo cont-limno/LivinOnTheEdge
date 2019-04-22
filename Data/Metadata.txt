@@ -44,7 +44,7 @@ buffer500m_streamdensity_streams_density_mperha: all streams (NHDFlowline minus 
 shoreline_wetlands_pct: proportion of lake shoreline adjacent to wetlands (adjacency defined as occurring within 30 m of lake shoreline)
 iws_damdensity_pointsperha: number of dams per hectare within the lake watershed (iws)
 Michian_Lake_Conn_Scores.csv
-Description: semi-aquatic and aquatic connectivity scores for Michigan lakes (? 4 ha), calculated in LivinOnTheEdge/Rcode/Hydro_Terrestrial_LakeConn_Indices.R
+Description: semi-aquatic and aquatic connectivity scores for Michigan lakes (? 4 ha), calculated in LivinOnTheEdge/Rcode/Aquatic_SemiAquatic_LakeConn_Indices.R
 Location: LivinOnTheEdge/Data
 
 Columns
