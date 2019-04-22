@@ -21,7 +21,7 @@ PADUS_buff <- read.csv("Data/PADUS_Mich_4ha_lakes_2020mBuff.csv") #2020 m snappi
 # shapefile of lake buffers (needed to calculate areas)
 # contains US lakes >= 4 ha within 10km of the Michigan border
 # GIS data downloaded and stored locally from: 
-# Soranno P., K. Cheruvelil. (2017c). LAGOS-NE-GIS v1.0: A module for LAGOS-NE, 
+# Soranno P., K. Cheruvelil. (2017). LAGOS-NE-GIS v1.0: A module for LAGOS-NE, 
 # a multi-scaled geospatial and temporal database of lake ecological context and water 
 # quality for thousands of U.S. Lakes: 2013-1925. Environmental Data Initiative. 
 # Package ID: edi.98.1
