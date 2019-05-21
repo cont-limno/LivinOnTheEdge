@@ -1,6 +1,6 @@
 ################# Aquatic and semi-aquatic lake connectivity indices ###########################
 # Date: 1-3-19
-# updated: 4-23-19
+# updated: 5-21-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -217,7 +217,8 @@ gg_sub <- subset(hydro_terr_conn_df, hydro_terr <= 10)
 gg_cor <- round(cor(gg_sub$PChydroall, gg_sub$PCterrall, method='pearson'),2)
 #jpeg('ItFigures/colored_ggplot_conn_scores.jpeg',width = 4,height = 4,units = 'in',res=600)
 combined_scores.point3<-ggplot(gg_sub, aes(x=PCterrall, y=PChydroall))+
-  geom_point(aes(colour=gg_sub$hydro_terr), size=1) +
+  #geom_point(aes(colour=gg_sub$hydro_terr), size=1) +
+  geom_point(aes(fill='black'), size=1) +
   geom_abline(intercept=0, slope=1, color='black', size=1) + #1:1 fit line
   #geom_hline(yintercept=1.24, color='black', linetype='dashed', size=1) + #had been 5
   #geom_vline(xintercept=1.77, color='black', linetype='dashed', size=1) + #had been 5
@@ -227,16 +228,17 @@ combined_scores.point3<-ggplot(gg_sub, aes(x=PCterrall, y=PChydroall))+
   #annotate("text", x=5.5, y=4.6, label='D)', size=4)+
   annotate("text", x=8, y=10, label=paste0('r = ', gg_cor), size=3)+
   ggtitle('')
-combined_scores.point3$labels$colour = 'Combined score' # change legend title
+#combined_scores.point3$labels$colour = 'Combined score' # change legend title
 combined_scores.point3 +
   scale_x_continuous(name="Semi-aquatic connectivity", limits=c(0, 10)) +
   scale_y_continuous(name="Aquatic connectivity", limits=c(0, 10)) +
-  scale_color_gradient(low='firebrick1', high='dodgerblue')+
+  #scale_color_gradient(low='firebrick1', high='dodgerblue')+
   theme_classic() +
-  theme(legend.position=c(0.9,0.5))+
-  theme(legend.key.size=unit(0.15,"in"))+
-  theme(legend.text=element_text(size=7))+
-  theme(legend.title=element_text(color='black', size=8))+
+  #theme(legend.position=c(0.9,0.5))+
+  theme(legend.position=c('none'))+
+  #theme(legend.key.size=unit(0.15,"in"))+
+  #theme(legend.text=element_text(size=7))+
+  #theme(legend.title=element_text(color='black', size=8))+
   theme(plot.title=element_text(size=9, face='bold'))
 #dev.off()
 
@@ -492,11 +494,16 @@ scoregroup_pts <- merge(lakes_4ha_pts, scoregroup_df, by.x='lagoslakei', by.y='l
 scoregroup_df <- as.data.frame(scoregroup_pts@data)
 scoregroup_df$xCor <- scoregroup_pts@coords[,1]
 scoregroup_df$yCor <- scoregroup_pts@coords[,2]
+dotsize <- 0.3 #applied to all geom_point below
 
 # Aquatic
+ggsub_med1 <- subset(scoregroup_df, ScoreGroup_Hyd == "(2,5]")
+ggsub_high1 <- subset(scoregroup_df, ScoreGroup_Hyd == "(5,13]")
 scoregroup.point1<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
-  geom_point(aes(colour=scoregroup_df$ScoreGroup_Hyd), size=0.6) +
+  geom_point(aes(colour=scoregroup_df$ScoreGroup_Hyd), size=dotsize) +
   ggtitle('a) Aquatic')+
+  geom_point(data=ggsub_med1, aes(colour=ggsub_med1$ScoreGroup_Hyd), size=dotsize) +
+  geom_point(data=ggsub_high1, aes(colour=ggsub_high1$ScoreGroup_Hyd), size=dotsize) +
   geom_path(data=mich_shp,aes(long,lat,group=group),colour='black', size=0.2) + coord_equal()+
   scale_color_manual(values=c("gray67", "moccasin", "dodgerblue"),
                      labels=c('Low (0-2)','Med (2-5)','High (> 5)'),
@@ -515,9 +522,13 @@ scoregroup.point1<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
 scoregroup.point1
 
 # Semi-aquatic
+ggsub_med2 <- subset(scoregroup_df, ScoreGroup_Ter == "(2,5]")
+ggsub_high2 <- subset(scoregroup_df, ScoreGroup_Ter == "(5,13]")
 scoregroup.point2<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
-  geom_point(aes(colour=scoregroup_df$ScoreGroup_Ter), size=0.6) +
+  geom_point(aes(colour=scoregroup_df$ScoreGroup_Ter), size=dotsize) +
   ggtitle('c) Semi-aquatic')+
+  geom_point(data=ggsub_med2, aes(colour=ggsub_med2$ScoreGroup_Ter), size=dotsize) +
+  geom_point(data=ggsub_high2, aes(colour=ggsub_high2$ScoreGroup_Ter), size=dotsize) +
   geom_path(data=mich_shp,aes(long,lat,group=group),colour='black', size=0.2) + coord_equal()+
   scale_color_manual(values=c("gray67", "moccasin", "dodgerblue"),
                      labels=c('0-2','2-5','> 5'),
@@ -536,9 +547,13 @@ scoregroup.point2<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
 scoregroup.point2
 
 # Combined
+ggsub_med3 <- subset(scoregroup_df, ScoreGroup_Comb == "(2,5]")
+ggsub_high3 <- subset(scoregroup_df, ScoreGroup_Comb == "(5,13]")
 scoregroup.point3<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
-  geom_point(aes(colour=scoregroup_df$ScoreGroup_Comb), size=0.6) +
+  geom_point(aes(colour=scoregroup_df$ScoreGroup_Comb), size=dotsize) +
   ggtitle('e) Combined')+
+  geom_point(data=ggsub_med3, aes(colour=ggsub_med3$ScoreGroup_Comb), size=dotsize) +
+  geom_point(data=ggsub_high3, aes(colour=ggsub_high3$ScoreGroup_Comb), size=dotsize) +
   geom_path(data=mich_shp,aes(long,lat,group=group),colour='black', size=0.2) + coord_equal()+
   scale_color_manual(values=c("gray67", "moccasin", "dodgerblue"),
                      labels=c('0-2','2-5','> 5'),
@@ -557,8 +572,9 @@ scoregroup.point3<-ggplot(scoregroup_df, aes(x=xCor,y=yCor))+
   guides(color = guide_legend(override.aes = list(size=1.5)))#increase legend point size
 scoregroup.point3
 
+colorz <- c(rep("gray67",3), rep("moccasin",3), rep("dodgerblue", 5)) #create color vector for histograms corresponding to map colors
 scorehist1 <- ggplot(scoregroup_df, aes(x=PChydroall))+
-  geom_histogram(color='black', fill='white',binwidth=1)+
+  geom_histogram(color='black', fill=colorz,binwidth=1)+
   theme_bw()+
   theme(panel.grid=element_blank(),
         plot.title=element_text(hjust=0, vjust=0, face='bold'))+
@@ -568,7 +584,7 @@ scorehist1 <- ggplot(scoregroup_df, aes(x=PChydroall))+
 scorehist1
 
 scorehist2 <- ggplot(scoregroup_df, aes(x=PCterrall))+
-  geom_histogram(color='black', fill='white',binwidth=1)+
+  geom_histogram(color='black', fill=colorz,binwidth=1)+
   theme_bw()+
   ggtitle('d)')+
   theme(panel.grid=element_blank(),
@@ -578,7 +594,7 @@ scorehist2 <- ggplot(scoregroup_df, aes(x=PCterrall))+
 scorehist2
 
 scorehist3 <- ggplot(scoregroup_df, aes(x=hydro_terr))+
-  geom_histogram(color='black', fill='white',binwidth=1)+
+  geom_histogram(color='black', fill=colorz,binwidth=1)+
   theme_bw()+
   ggtitle('f)')+
   theme(panel.grid=element_blank(),
