@@ -1,6 +1,6 @@
 ############### Lake and wetland patches within animal dispersal buffers #######################
 # Date: 12-15-18
-# updated: 4-22-19
+# updated: 8-30-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -54,11 +54,9 @@ mich_lakes_NHD_sub <- subset(mich_lakes_NHD, !(COMID %in% great_lakes_comid))
 LakeBufferPatchStatz <- data.frame(matrix(NA, nrow = length(mich_lagoslakeids), ncol = 10))
 colnames(LakeBufferPatchStatz) <- c('lagoslakeid','nLakePatches','LakeEdge_km','LakeEdgeArea_ha','LakeEdgeArea_pct',
                                     'nWetlandPatches','WetlandEdge_km','WetlandArea_ha','WetlandArea_pct','BufferWidth_m')
-dispersal_buff <- 2020 #meters from Patrick et al. (2012) for common snapping turtle
-#Patrick, D. A., Gibbs, J. P., Popescu, V. D., & Nelson, D. A. (2012). Multi-scale habitat-resistance models for predicting road mortality "hotspots" for turtles and amphibians. 
-#Herpetological Conservation and Biology, 7(3), 407-426.
+dispersal_buff <- 1500 #meters; encompasses maximum dispersal distance for semi-aquatic reptiles and amphibians (see methods)
 
-# loop took almost 2 days fro 6511 Michigan lakes
+# loop took almost 2 days for 6511 Michigan lakes
 for (i in 1:length(mich_lagoslakeids)){
   tump <- lake_dispersal_buffer_patch_metrics(lagoslakeid=mich_lagoslakeids[i], LAGOS_shp=lakes_4ha_poly, NHD_shp=mich_lakes_NHD_sub, wetland_shp=mich_NWI, dispersal_buff=dispersal_buff)
   LakeBufferPatchStatz[i,] <- tump
@@ -70,7 +68,7 @@ LakeBufferPatchStatz$LakeEdge_km <- ifelse(LakeBufferPatchStatz$LakeEdge_km < 0,
 LakeBufferPatchStatz$LakeEdgeArea_ha <- ifelse(LakeBufferPatchStatz$LakeEdgeArea_ha < 0, 0, LakeBufferPatchStatz$LakeEdgeArea_ha)
 LakeBufferPatchStatz$LakeEdgeArea_pct <- ifelse(LakeBufferPatchStatz$LakeEdgeArea_pct < 0, 0, LakeBufferPatchStatz$LakeEdgeArea_pct)
 
-#write.csv(LakeBufferPatchStatz, file="Data/LakeWetlandPatchStats_2020mBuff.csv")
+write.csv(LakeBufferPatchStatz, file="Data/LakeWetlandPatchStats_1500mBuff.csv")
 
 par(mfrow=c(2,3))
 hist(LakeBufferPatchStatz$nLakePatches)
