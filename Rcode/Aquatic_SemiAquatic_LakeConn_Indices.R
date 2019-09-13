@@ -1,6 +1,6 @@
 ################# Aquatic and semi-aquatic lake connectivity indices ###########################
 # Date: 1-3-19
-# updated: 5-21-19
+# updated: 9-13-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -17,9 +17,9 @@ library(gridExtra)
 #### input data ####
 setwd("C:/Users/FWL/Documents/LivinOnTheEdge")
 hydro_conn_df <- read.csv("Data/Michigan_LAGOS_conn_metrics.csv")
-terr_conn_df <- read.csv("Data/LakeWetlandPatchStats_2020mBuff.csv")
+terr_conn_df <- read.csv("Data/LakeWetlandPatchStats_1500mBuff.csv")
 patch_statz <- read.csv("Data/MichiganLakePatchStats_wBorderStates.csv")
-cost_dist <- read.csv("Data/CostDist_Mich_4ha_lakes_2020mBuff.csv")
+cost_dist <- read.csv("Data/CostDist_Mich_4ha_lakes_1500mBuff.csv")
 
 # GIS data downloaded and stored locally from: 
 # Soranno P., K. Cheruvelil. (2017). LAGOS-NE-GIS v1.0: A module for LAGOS-NE, 
@@ -39,7 +39,7 @@ lakes_4ha_pts <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha_P
 
 # Protected area (PADUS) data, calculated for LAGOS IWS and lake buffers in ArcGIS (tabluate area)
 PADUS_IWS <- read.csv("Data/PADUS_MI_IWS_pct.csv")
-PADUS_buff <- read.csv("Data/PADUS_MI_Buff2020m_pct.csv")
+PADUS_buff <- read.csv("Data/PADUS_MI_Buff1500m_pct.csv")
 
 ##################### Main program ######################
 # identify Mich lagoslakeids (focal lakes)
