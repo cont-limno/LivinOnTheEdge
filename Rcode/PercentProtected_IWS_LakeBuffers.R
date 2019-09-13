@@ -1,6 +1,6 @@
-#### Calculate percent protected for lake watersheds and snapping turtle dispersal buffers #####
+#### Calculate percent protected for lake watersheds and semi-aquatic taxa dispersal buffers ####
 # Date: 1-3-19
-# updated: 4-22-19
+# updated: 9-13-19
 # Author: Ian McCullough, immccull@gmail.com
 ################################################################################################
 
@@ -16,9 +16,9 @@ setwd('C:/Users/FWL/Documents/LivinOnTheEdge')
 
 # results from ArcGIS tabulate area
 PADUS_IWS <- read.csv("Data/PADUS_LAGOSNE_IWS.csv")
-PADUS_buff <- read.csv("Data/PADUS_Mich_4ha_lakes_2020mBuff.csv") #2020 m snapping turtle dispersal buffer (Patrick et al. 2012)
+PADUS_buff <- read.csv("Data/PADUS_Mich_4ha_lakes_1500mBuff.csv")
 
-# shapefile of lake buffers (needed to calculate areas)
+# shapefile of lake buffers (needed to calculate areas; buffered in ArcGIS)
 # contains US lakes >= 4 ha within 10km of the Michigan border
 # GIS data downloaded and stored locally from: 
 # Soranno P., K. Cheruvelil. (2017). LAGOS-NE-GIS v1.0: A module for LAGOS-NE, 
@@ -26,7 +26,7 @@ PADUS_buff <- read.csv("Data/PADUS_Mich_4ha_lakes_2020mBuff.csv") #2020 m snappi
 # quality for thousands of U.S. Lakes: 2013-1925. Environmental Data Initiative. 
 # Package ID: edi.98.1
 # http://dx.doi.org/10.6073/pasta/fb4f5687339bec467ce0ed1ea0b5f0ca. Dataset accessed 9/26/2017.
-buff_shp <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_4ha_within10km_mich_2020mBuff.shp")
+buff_shp <- shapefile("C:/Ian_GIS/LAGOS-NE-GISv1.0/LAGOS_NE_All_Lakes_4ha/LAGOS_NE_4ha_within10km_mich_1500mBuff.shp")
 
 ############## Main program #################
 # identify Mich lagoslakeids (focal lakes)
@@ -82,4 +82,4 @@ cor(mich_lakes_df$GAP123_IWS_pct, mich_lakes_df$GAP123_buff_pct, use='pairwise.c
 
 # save output for use in other analysis
 #write.csv(PADUS_IWS, file="Data/PADUS_MI_IWS_pct.csv")
-#write.csv(PADUS_buff, file="Data/PADUS_MI_Buff2020m_pct.csv")
+#write.csv(PADUS_buff, file="Data/PADUS_MI_Buff1500m_pct.csv")
