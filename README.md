@@ -1,5 +1,5 @@
 # LivinOnTheEdge
-Lake connectivity for aquatic and semi-aquatic species;
+Analysis of aquatic and semi-aquatic connectivity among lakes in relation to protected areas in Michigan, USA;
 not: https://en.wikipedia.org/wiki/Livin'_on_the_Edge
 
 # ConceptualModel
