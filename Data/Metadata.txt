@@ -1,5 +1,5 @@
-CostDist_Mich_4ha_lakes_2020mBuff.csv
-Description: Cost surface Zonal Statistics (as a table) output (ArcGIS v. 10.3.1) for dispersal buffers (2020 m) around Michigan lakes (? 4 ha). 
+CostDist_Mich_4ha_lakes_1500mBuff.csv
+Description: Cost surface Zonal Statistics (as a table) output (ArcGIS v. 10.3.1) for dispersal buffers (1500 m) around Michigan lakes (? 4 ha). 
 Location: LivinOnTheEdge/Data
 
 Columns
@@ -14,8 +14,8 @@ MEAN: mean cost surface value within zone
 STD: standard deviation of cost surface values within zone
 SUM: total cost surface value within zone
 
-LakeWetlandPatchStats_2020mBuff.csv
-Description: Patch statistics for lakes and wetlands within dispersal buffers (2020 m) around Michigan lakes (? 4 ha). Calculated with LivinOnTheEdge/Rcode/LakesWetlands_in_DispersalBuffers.R.
+LakeWetlandPatchStats_1500mBuff.csv
+Description: Patch statistics for lakes and wetlands within dispersal buffers (1500 m) around Michigan lakes (? 4 ha). Calculated with LivinOnTheEdge/Rcode/LakesWetlands_in_DispersalBuffers.R.
 Location: LivinOnTheEdge/Data
 
 Columns
@@ -53,6 +53,16 @@ PChydroall: aquatic connectivity score (based on PCA scores for aquatic variable
 PCterrall: semi-aquatic connectivity score (based on PCA scores for semi-aquatic variables)
 hydro_terr: combined aquatic/semi-aquatic connectivity score
 
+Michigan_Lake_Conn_Scores.csv
+Description: Aquatic and semi-aquatic connectivity scores for Michigan lakes (? 4 ha) extracted Calculated with LivinOnTheEdge/Rcode/ Aquatic_SemiAquatic_LakeConn_Indices.R. See manuscript methods for description of variables and principal components analysis.
+Location: LivinOnTheEdge/Data
+
+Columns
+lagoslakeid: unique lake identifier in LAGOSNE
+PChydroall: aquatic connectivity score (previously named hydrologic; hence hydro in name)
+PCterrall: semi-aquatic connectivity score (previously named terrestrial; hence terr in name)
+hydro_terr: combined aquatic and semi-aquatic connectivity score
+
 MichiganLakePatchStats_wBorderStates.csv
 Description: Patch statistics for Michigan lakes (? 4 ha), including US lakes within 10 km of the Michigan border; output from SDMTools::PatchStat, calculated in LivinOnTheEdge/Rcode/MichiganLakePatchStats.R.
 Location: LivinOnTheEdge/Data
@@ -84,8 +94,8 @@ A_1: area (m2) of land under GAP status 1 (strict protection; managed for biodiv
 A_2: area (m2) of land under GAP status 2 (strict protection; managed for biodiversity with disturbances suppressed)
 A_3: area (m2) of land under GAP status 3 (multi-use)
 
-PADUS_MI_Buff2020m_pct.csv
-Description: Proportion of dispersal buffers (2020 m) protected based on Tabulate Area output (ArcGIS v. 10.3.1) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded. Calculated in: LivinOnTheEdge/Rcode/PercentProtected_IWS_LakeBuffers.R.
+PADUS_MI_Buff1500m_pct.csv
+Description: Proportion of dispersal buffers (1500 m) protected based on Tabulate Area output (ArcGIS v. 10.3.1) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded. Calculated in: LivinOnTheEdge/Rcode/PercentProtected_IWS_LakeBuffers.R.
 Location: LivinOnTheEdge/Data
 
 Columns
@@ -120,8 +130,8 @@ GAP123_IWS_pct: proportion of watershed under GAP status 1, 2 or 3
 IWS_area_ha.y: area of watershed (ha) (same as IWS_area_ha; duplicated by table merge)
 IWS_area_ha: area of watershed (ha)
 
-PADUS_Mich_4ha_lakes_2020mBuff.csv
-Description: Tabulate Area output (ArcGIS v. 10.3.1) for protected land within dispersal buffers (2020 m) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded.
+PADUS_Mich_4ha_lakes_1500mBuff.csv
+Description: Tabulate Area output (ArcGIS v. 10.6) for protected land within dispersal buffers (1500 m) for Michigan lakes (? 4 ha) from LAGOSNE. Protected lands based on US Protected Areas Database (PADUS) v. 1.4. Buffers with no protected land were excluded.
 Location: LivinOnTheEdge/Data
 
 Columns
